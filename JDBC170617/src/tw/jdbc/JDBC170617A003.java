@@ -29,7 +29,7 @@ public class JDBC170617A003 {
 		prop.setProperty("password", "root");
 		
 		Connection conn =
-				DriverManager.getConnection("jdbc:mysql://localhost/double", "root", "root");
+				DriverManager.getConnection("jdbc:mysql://10.21.200.66/brad", prop);
 			//Connection --> java.sql
 			//"jdbc:mysql://localhost/test?" + "user=root&password=root" fr file:///C:/JDBC001/mysql-connector-java-5.1.42/docs/connector-j.html
 			//MySQL create one DB.
