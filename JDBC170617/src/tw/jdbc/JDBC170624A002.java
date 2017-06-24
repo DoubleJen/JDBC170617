@@ -26,7 +26,7 @@ public class JDBC170624A002 {
 			Statement stmt =  conn.createStatement();
 			//新增資料前判斷帳號有無重複
 			String account = "eric", passwd = "abcdef", realname = "Eric Ho";
-			System.out.println(account);
+			//System.out.println(account);
 			if(!isDataRepeat(account,stmt)){
 				String sql = "INSERT INTO member (account, passwd, realname)" +
 							"VALUES('" + account + "','" + passwd + "','" + realname + "')";
@@ -42,19 +42,19 @@ public class JDBC170624A002 {
 		
 	}
 	static boolean isDataRepeat(String account, Statement stmt) throws Exception{
-		System.out.println("11");
-		String sql = "SELECT count(*)　as f1 from member where account = '" + account +"'";
-		System.out.println("12");
+		//System.out.println("11");
+		String sql = "SELECT count(*) as f1 from member where account = '" + account +"'";
+		//System.out.println("12");
 		ResultSet rs = stmt.executeQuery(sql);
-		System.out.println("0");
+		//System.out.println("0");
 		if(rs.next()){
 			int num = rs.getInt("f1");
 			if(num > 0){
-				System.out.println("1");
+				//System.out.println("1");
 				return true;
 			}
 			else{
-				System.out.println("2");
+				//System.out.println("2");
 				return false;
 			}
 		}else{

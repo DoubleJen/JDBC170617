@@ -26,10 +26,10 @@ public class JDBC170624A003 {
 			Statement stmt =  conn.createStatement();
 			//帳密驗證
 			String account = "brad", passwd = "123";
-			String[] result;
-			
-			if((result = checkMember(stmt, account, passwd)) !=  null){
-				System.out.println("WELCOME" + result[3]);
+
+			Member loginMember;
+			if ( (loginMember = checkMember(stmt, account, passwd)) != null){
+				System.out.println("Welcome, " + loginMember.realname);
 			}else{
 				System.out.println("Error Login");
 			}
@@ -41,13 +41,15 @@ public class JDBC170624A003 {
 		
 	}
 	
-	static Member checkMember(Statement stmt, String account, String passwd) throws Exception{
-		String sql = "SELECT count(*)　as f1 from member where account = '" + account +
-					"' and passwd = '" + passwd + "'";
+	static Member checkMember(Statement stmt, String account, String passwd) throws Exception {
+		String sql = "SELECT * from member where account = '" + 
+				account + "' and passwd = '" + passwd + "'";
 		ResultSet rs = stmt.executeQuery(sql);
-		if(rs.next()){
+		if (rs.next()){
 			// right member
-			Member member = new Member(rs.getString("id"), rs.getString("account"), rs.getString("realname"));
+			Member member = new Member(rs.getString("id"),
+					rs.getString("account"),
+					rs.getString("realname"));
 			return member;
 		}else{
 			return null;
@@ -57,6 +59,11 @@ public class JDBC170624A003 {
 
 class Member{
 	String id, account, realname;
+	Member(String id, String account, String realname){
+		this.id=id;
+		this.account=account;
+		this.realname=realname;
+	}
 	
 }
 
